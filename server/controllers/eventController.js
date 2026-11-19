@@ -1,6 +1,15 @@
 // controllers/eventController.js
 const db = require("../db/pool");
 
+// Helper to normalize any HTML or ISO date input to MySQL DATETIME format (YYYY-MM-DD HH:MM:SS)
+const formatToMySQLDateTime = (val) => {
+  if (!val) return val;
+  let str = String(val).replace("T", " ");
+  if (str.length === 10) str += " 00:00:00";
+  else if (str.length === 16) str += ":00";
+  return str;
+};
+
 // Helper to attach dynamic ticket tiers
 const attachTicketTiers = (event) => {
   const basePrice = Number(event.price) || 0;
@@ -56,6 +65,8 @@ exports.createEvent = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid date format" });
     }
 
+    const formattedDate = formatToMySQLDateTime(date);
+
     // Insert query
     const query = `
       INSERT INTO events (title, description, location, date, total_seats, available_seats, price, img)
@@ -66,7 +77,7 @@ exports.createEvent = async (req, res) => {
       title,
       description,
       location,
-      date,
+      formattedDate,
       total_seats,
       available_seats || total_seats,
       price,
@@ -111,7 +122,7 @@ exports.updateEvent = async (req, res) => {
     if (title !== undefined) { fields.push("title = ?"); values.push(title); }
     if (description !== undefined) { fields.push("description = ?"); values.push(description); }
     if (location !== undefined) { fields.push("location = ?"); values.push(location); }
-    if (date !== undefined) { fields.push("date = ?"); values.push(date); }
+    if (date !== undefined) { fields.push("date = ?"); values.push(formatToMySQLDateTime(date)); }
     if (total_seats !== undefined) { fields.push("total_seats = ?"); values.push(total_seats); }
     if (available_seats !== undefined) { fields.push("available_seats = ?"); values.push(available_seats); }
     if (price !== undefined) { fields.push("price = ?"); values.push(price); }
