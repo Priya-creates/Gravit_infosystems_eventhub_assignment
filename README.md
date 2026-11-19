@@ -6,7 +6,33 @@ Built with **React 18**, **Tailwind CSS v4**, **Node.js**, **Express.js**, **MyS
 
 ---
 
-## 📸 Key Features at a Glance
+## 📸 Application Screenshots & Visual Showcase
+
+### 1. 🌌 Futuristic Parallax Landing Page
+Modern summit experience featuring cosmic ambient lighting, floating tags, metrics counter, and CTA banners.
+![Landing Page](./screenshots/landing_page.png)
+
+---
+
+### 2. 🔍 Real-Time Event Directory & Filter Search
+Live synchronized event cards with dynamic capacity indicator, keyword search, venue location, and date filters.
+![Events Directory](./screenshots/events.png)
+
+---
+
+### 3. 🎟️ Event Details with Google Maps & Dynamic Pricing
+Interactive embedded venue mapping, tier selection (`Early Bird`, `Standard`, `VIP Platinum`), and live perks overview.
+![Event Details](./screenshots/event_details.png)
+
+---
+
+### 4. 📊 Administrative Dashboard (CRUD & Track Bookings)
+Unified portal with real-time gross revenue metrics, tickets sold, event management, and complete reservation tracking.
+![Admin Dashboard](./screenshots/admin_dashboard.png)
+
+---
+
+## 🚀 Key Features at a Glance
 
 ### 1. 🌐 Attendee & User Experience
 * **Parallax Summit Landing Page:** Futuristic dark-mode landing experience with glowing cosmos ambient lighting, parallax scroll layers, attendee stats counter, and brand partners strip.
@@ -46,6 +72,11 @@ Built with **React 18**, **Tailwind CSS v4**, **Node.js**, **Express.js**, **MyS
 event-booking/
 ├── event_booking.sql            # MySQL database schema & seed data
 ├── README.md                    # Project documentation & setup instructions
+├── screenshots/                 # Application preview screenshots
+│   ├── landing_page.png
+│   ├── events.png
+│   ├── event_details.png
+│   └── admin_dashboard.png
 ├── client/                      # React 18 + Vite Frontend
 │   ├── public/                  # Static assets & brand logo
 │   ├── src/
@@ -65,7 +96,7 @@ event-booking/
 │   │   │   └── socket.js        # Socket.IO client singleton
 │   │   ├── App.jsx              # Central router configuration
 │   │   └── index.css            # Tailwind CSS styling & custom typography
-│   ├── .env                     # Client environment configuration
+│   ├── .env.example             # Safe environment variable template
 │   ├── vite.config.js           # Vite build configuration
 │   └── package.json
 └── server/                      # Node.js + Express Backend
@@ -80,8 +111,7 @@ event-booking/
     ├── routes/
     │   ├── eventRoutes.js       # RESTful event routes (GET, POST, PUT, DELETE)
     │   └── bookingRoutes.js     # Booking routes (POST, GET admin, cancel)
-    ├── .env                     # Server environment variables
-    ├── config.env               # Backup configuration
+    ├── .env.example             # Safe environment variable template
     ├── index.js                 # Server entry point with Socket.IO integration
     └── package.json
 ```
@@ -122,7 +152,7 @@ Follow these steps to run the application locally on your machine.
    ```bash
    npm install
    ```
-3. Verify or edit your `server/.env` file with your MySQL password:
+3. Create your `.env` file based on `.env.example`:
    ```env
    DB_HOST=localhost
    DB_PORT=3306
@@ -155,7 +185,7 @@ Follow these steps to run the application locally on your machine.
    ```bash
    npm install
    ```
-3. Check your `client/.env` file:
+3. Create your `.env` file based on `.env.example`:
    ```env
    VITE_API_BASE_URL=http://localhost:5000
    VITE_ADMIN_SECRET=adminsecretkey369
@@ -219,4 +249,5 @@ To experience the real-time seat tracking in action:
 - [x] Confetti animation + downloadable QR code PNG ticket pass
 - [x] Admin dashboard with Event CRUD and Track Bookings table
 - [x] `event_booking.sql` schema script with sample seed data
+- [x] Application screenshots embedded in `README.md`
 - [x] Setup and execution guide in `README.md`
